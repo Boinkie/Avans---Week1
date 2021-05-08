@@ -15,24 +15,25 @@ $bmi = $weight / ($length * $length);
     <title>BMI</title>
 </head>
 <body>
-    <h3>Welkom bij de BMI tester!</h3>
-    <p>U heeft een: </p>
+    <h1>Welkom bij de BMI tester!</h1>
+    <p>U heeft een
 
 <?php
 switch ($bmi) {
-    case ($bmi < 18.5):
+    case ($bmi <= 18.5):
         echo "<p>Ondergewicht</p>";
         break;
-    case ($bmi > 18.5 && $bmi < 25):
+    case ($bmi > 18.5 && $bmi <= 25):
         echo "<p>Gezond gewicht</p>";
         break;
-    case ($bmi > 25 && $bmi < 30);
+    case ($bmi > 25 && $bmi <= 30);
         echo "<p>Overgewicht'</p>";
         break;
     case ($bmi > 30);
     echo "<p>Obesitas</p>";
     break;
 } ?>
+</p>
     
 </body>
 </html>
