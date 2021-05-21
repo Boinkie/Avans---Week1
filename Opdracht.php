@@ -43,7 +43,7 @@ function countBadWords($textArray, $badWord, $replacedWords)
         }
     }
     }
-
+    $randomWoordUitArray = $niceWords[rand(0, count($niceWords)-1)];
 
 ?>
 

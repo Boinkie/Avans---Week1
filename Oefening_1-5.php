@@ -2,7 +2,9 @@
 $students = array(
     array("first_name" => "Piet", "score" => 8.3, "last_name" => "Smith"),
     array("first_name" => "Jan", "score" => 9.2, "last_name" => "de Boer"),
-    array("first_name" => "Anna", "score" => 9.0, "last_name" => "Bel")
+    array("first_name" => "Anna", "score" => 9.0, "last_name" => "Bel"),
+    array("first_name" => "Mila", "score" => 9.7, "last_name" => "Jansen"),
+    array("first_name" => "Cees", "score" => 5.6, "last_name" => "Pietersen")
 );
 
 foreach ($students as $student) {

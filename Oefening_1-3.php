@@ -20,7 +20,7 @@ $bmi = $weight / ($length * $length);
 
 <?php
 switch ($bmi) {
-    case ($bmi <= 18.5):
+    case ($bmi <= 18.5 && $bmi > 0):
         echo "<p>Ondergewicht</p>";
         break;
     case ($bmi > 18.5 && $bmi <= 25):
@@ -32,6 +32,8 @@ switch ($bmi) {
     case ($bmi > 30);
     echo "<p>Obesitas</p>";
     break;
+    default;
+    echo "<p>Ongeldige invoer</p>";
 } ?>
 </p>
     
