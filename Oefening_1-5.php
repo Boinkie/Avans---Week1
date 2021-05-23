@@ -90,7 +90,9 @@ foreach ($students as $student) {
                 $count++;
             }
         }
+        
         ?>
+
     </table>
 
 </html>
