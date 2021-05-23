@@ -15,7 +15,7 @@ function findCommonElements($array1, $array2)
             }
         }
     }
-    return $words;
+    echo $words;
 }
 
 
@@ -23,11 +23,14 @@ function findCommonElements($array1, $array2)
 // Grove woorden vervangen voor aardige woorden.
 function replace($text, $searchWord, $replaceWord)
 {
-    foreach ($searchWord as $word) {
-        $replace = array_rand($replaceWord, 1);
-        str_replace($word, $replace, $text);
-    }
+    str_ireplace($searchWord, $replaceWord, $text);
 }
+
+$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+$healthy = array("fruits", "vegetables", "fiber");
+$yummy   = array("pizza", "beer", "ice cream");
+
+$newphrase = str_replace($healthy, $yummy, $phrase);
 
 // Grove woorden uit de tekst tellen en tonen
 function countBadWords($textArray, $badWord, $replacedWords)
@@ -81,33 +84,43 @@ function countBadWords($textArray, $badWord, $replacedWords)
     // Zinnen op hoofdletters corrigeren
     $text = preg_split('/(?<=[.?!;:])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
     $text = array_map('ucfirst', $text);
+
+    // Gecorrigeerde woorden weergeven
+    $j = count($text);
+    $matrix = array();
+    foreach ($text as $sentence) {
+        $matrix[] = explode(" ", $sentence);
+    }
+    $correctedText = array();
+    foreach ($matrix as $sentence) {
+        $correctedText[] = $sentence[0];
+    }
     $text = implode(' ', $text);
     echo $text . "<br>";
-    array_diff()
     ?>
+
     <h2>De gecorrigeerde woorden zijn:</h2>
-    <p><?php ?></p>
-    <p>Daarna willen we het aantal grove woorden tellen en vervangen door aardige woorden:</p>
+    <p><?php foreach ($correctedText as $word) {
+        echo $word . "<br>";
+    } ?></p>
     
-
-
-
+    <h2>Daarna willen we het aantal grove woorden tellen en vervangen door aardige woorden:</h2>
     <?php
     // tekst omzetten in een array van woorden
     $textArray = str_replace("\n", " ", $text);
     $textArray = explode(" ", $textArray);
-    print_r($textArray);
-
-    
-    
-
-    
-
+    ?>
+    <p>Het aantal grove woorden is: </p>
+    <?php 
     $sumBadWords = findCommonElements($textArray, $badWords);
-    echo $sumBadWords;
-    $replacedWords = array();
-    countBadWords($textArray, $badWords, $replacedWords);
-    //var_dump($replacedWords);
+    echo $sumBadWords; ?>
+    <p>De vervangen tekst is: </p>
+    <?php
+    foreach ($badWords as $word) {
+        $niceWord = $niceWords[array_rand($niceWords, 1)];
+        $correctedText = str_ireplace($word, $niceWord, $text);
+    }
+    echo $correctedText;
 
     ?>
 
