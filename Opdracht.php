@@ -18,36 +18,6 @@ function findCommonElements($array1, $array2)
     echo $words;
 }
 
-
-
-// Grove woorden vervangen voor aardige woorden.
-function replace($text, $searchWord, $replaceWord)
-{
-    str_ireplace($searchWord, $replaceWord, $text);
-}
-
-$phrase  = "You should eat fruits, vegetables, and fiber every day.";
-$healthy = array("fruits", "vegetables", "fiber");
-$yummy   = array("pizza", "beer", "ice cream");
-
-$newphrase = str_replace($healthy, $yummy, $phrase);
-
-// Grove woorden uit de tekst tellen en tonen
-function countBadWords($textArray, $badWord, $replacedWords)
-{
-    foreach ($textArray as $value) {
-        if (strpos($value, $badWord) !== false) {
-            $replacedWords[] = $value;
-            if (empty($replacedWords)) {
-                echo "<p>No matches found.</p>";
-            } else {
-                echo "<p> " . $badWord . " was found in: " . implode('; ', $replacedWords) . "</p><br>";
-            }
-        }
-    }
-    }
-    $randomWoordUitArray = $niceWords[rand(0, count($niceWords)-1)];
-
 ?>
 
 <!DOCTYPE html>
@@ -71,10 +41,13 @@ function countBadWords($textArray, $badWord, $replacedWords)
     <?php
 
     // Input geven welke tekst je wilt gebruiken
-    $text = "als je iemand een lul noemt, ben je niet zo erg aardig. het is namelijk een scheldwoord
+    $originalText = "als je iemand een lul noemt, ben je niet zo erg aardig. het is namelijk een scheldwoord
     en die willen we met dit programma eruit filteren. het is best lastig om zo'n programma te schrijven,
     daarom hoor je regelmatig kut en fuck. maar ook al mag je geen shit zeggen, dat maakt je nog
     niet tot een slechte programmeur.";
+
+    $text = $originalText;
+
     ?>
     <h2>Deze tekst willen we gaan omzetten:</h2>
     <p><?php echo $text ?> </p>
@@ -82,20 +55,20 @@ function countBadWords($textArray, $badWord, $replacedWords)
     
     <?php
     // Zinnen op hoofdletters corrigeren
-    $text = preg_split('/(?<=[.?!;:])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
-    $text = array_map('ucfirst', $text);
+    $capitalizedText = preg_split('/(?<=[.?!;:])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+    $capitalizedText = array_map('ucfirst', $capitalizedText);
 
     // Gecorrigeerde woorden weergeven
-    $j = count($text);
+    $j = count($capitalizedText);
     $matrix = array();
-    foreach ($text as $sentence) {
+    foreach ($capitalizedText as $sentence) {
         $matrix[] = explode(" ", $sentence);
     }
     $correctedText = array();
     foreach ($matrix as $sentence) {
         $correctedText[] = $sentence[0];
     }
-    $text = implode(' ', $text);
+    $text = implode(' ', $capitalizedText);
     echo $text . "<br>";
     ?>
 
